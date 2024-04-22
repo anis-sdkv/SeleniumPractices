@@ -1,17 +1,37 @@
 ﻿using OpenQA.Selenium;
 using SeleniumPractices.Models;
 
-namespace SeleniumPractices.Core;
+namespace SeleniumPractices.Core.Helpers;
 
 public class PostHelper : HelperBase
 {
-    public PostHelper(ApplicationManager manager) : base(manager)
+    public PostHelper(AppManager manager) : base(manager)
     {
+    }
+
+    public void OpenLastCreatedPostToEdit()
+    {
+        Driver.FindElement(By.LinkText("Ваши сообщения")).Click();
+        Driver.FindElement(By.XPath("//p/a[4]")).Click();
+        Driver.FindElement(By.CssSelector(".tablebg:nth-child(15) .gensmall:nth-child(2) > a:nth-child(1) > img"))
+            .Click();
+    }
+
+    public PostModel GetCreatedPostData()
+    {
+        var text = Driver.FindElement(By.Name("message")).Text;
+        var bbCode = Driver.FindElement(By.Name(PostModel.BbCode)).Selected;
+        var attachSign = Driver.FindElement(By.Name(PostModel.AttachSign)).Selected;
+        var smiles = Driver.FindElement(By.Name(PostModel.DisableSmiles)).Selected;
+        var magicUrl = Driver.FindElement(By.Name(PostModel.DisableMagicUrl)).Selected;
+        var notify = Driver.FindElement(By.Name(PostModel.Notify)).Selected;
+
+        return new PostModel(text, bbCode, smiles, magicUrl, attachSign, notify);
     }
 
     public void CreateNewPost(PostModel post)
     {
-        Driver.FindElement(By.CssSelector("#pagecontent > table:nth-child(1) img")).Click();
+        // Driver.FindElement(By.CssSelector("#pagecontent > table:nth-child(1) img")).Click();
         Driver.FindElement(By.Name("message")).Click();
         Driver.FindElement(By.Name("message")).SendKeys(post.Message);
 

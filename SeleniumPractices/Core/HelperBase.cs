@@ -6,9 +6,9 @@ namespace SeleniumPractices.Core;
 public abstract class HelperBase
 {
     protected IWebDriver Driver;
-    protected ApplicationManager Manager;
+    protected AppManager Manager;
 
-    protected HelperBase(ApplicationManager manager)
+    protected HelperBase(AppManager manager)
     {
         Manager = manager;
         Driver = manager.Driver;

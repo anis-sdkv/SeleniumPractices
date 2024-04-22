@@ -1,12 +1,12 @@
 ﻿using OpenQA.Selenium;
 
-namespace SeleniumPractices.Core;
+namespace SeleniumPractices.Core.Helpers;
 
 public class NavigationHelper : HelperBase
 {
     private readonly string baseUrl;
 
-    public NavigationHelper(ApplicationManager manager, string baseUrl) : base(manager)
+    public NavigationHelper(AppManager manager, string baseUrl) : base(manager)
     {
         this.baseUrl = baseUrl;
     }

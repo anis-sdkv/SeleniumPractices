@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumPractices.Models;
 
-namespace SeleniumPractices.Core;
+namespace SeleniumPractices.Core.Helpers;
 
 public class AuthHelper : HelperBase
 {
@@ -9,7 +9,7 @@ public class AuthHelper : HelperBase
 
     public bool IsAuthorized => Driver.FindElement(By.LinkText("Вход")) == null;
     
-    public AuthHelper(ApplicationManager manager) : base(manager)
+    public AuthHelper(AppManager manager) : base(manager)
     {
     }
 

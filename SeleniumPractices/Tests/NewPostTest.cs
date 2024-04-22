@@ -16,7 +16,14 @@ public class NewPostTest : TestBase
             App.Auth.Login(App.Auth.TestAccount);
         }
 
+        var expectedModel = new PostModel("Проверка связи", NotifyEnabled: true);
+
         App.Navigation.OpenCreatePostPage();
-        App.Post.CreateNewPost(new PostModel("Проверка связи :)", NotifyEnabled: true));
+        App.Post.CreateNewPost(expectedModel);
+
+        // Assert
+        App.Post.OpenLastCreatedPostToEdit();
+        var actualModel = App.Post.GetCreatedPostData();
+        Assert.That(actualModel, Is.EqualTo(expectedModel));
     }
 }

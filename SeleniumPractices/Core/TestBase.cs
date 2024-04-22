@@ -7,17 +7,11 @@ namespace SeleniumPractices.Core;
 [TestFixture]
 public abstract class TestBase
 {
-    protected ApplicationManager App = null!;
+    protected AppManager App = null!;
 
     [SetUp]
     public void SetUp()
     {
-        App = new ApplicationManager();
-    }
-
-    [TearDown]
-    protected void TearDown()
-    {
-        App.Stop(); 
+        App = AppManager.GetInstance();
     }
 }
